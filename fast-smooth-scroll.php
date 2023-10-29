@@ -42,6 +42,8 @@ add_action( 'wp_footer', 'fast_smooth_scroll_print_style' );
  * @since n.e.x.t
  */
 function fast_smooth_scroll_register_scripts() {
+	global $wp_scripts;
+
 	$script_metadata = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
 	$polyfill_src    = SCRIPT_DEBUG ? 'src/index.js' : 'build/index.js';
 
@@ -62,7 +64,7 @@ function fast_smooth_scroll_register_scripts() {
 	wp_add_inline_script(
 		'fast-smooth-scroll-polyfills',
 		wp_get_script_polyfill(
-			wp_scripts(),
+			$wp_scripts,
 			array(
 				'document.documentElement && document.documentElement.style.scrollBehavior !== undefined && ( document.documentElement.style.scrollBehavior = "smooth" || true ) && document.documentElement.style.scrollBehavior === "smooth"' => 'fast-smooth-scroll-scroll-behavior-polyfill',
 			)
