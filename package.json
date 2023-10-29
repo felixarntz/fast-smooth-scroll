@@ -28,6 +28,7 @@
 		"fast-glob": "^3.2.12"
   },
   "scripts": {
+    "build": "wp-scripts build",
     "format-js": "wp-scripts format",
     "format-php": "wp-env run cli --env-cwd=wp-content/plugins/$(basename $(pwd)) composer format",
     "phpstan": "wp-env run cli --env-cwd=wp-content/plugins/$(basename $(pwd)) composer phpstan",

@@ -24,8 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'FAST_SMOOTH_SCROLL_VERSION', '1.0.0' );
-
 /**
  * Prints the inline style tag to set the CSS 'scroll-behavior' property.
  *
@@ -44,18 +42,21 @@ add_action( 'wp_footer', 'fast_smooth_scroll_print_style' );
  * @since n.e.x.t
  */
 function fast_smooth_scroll_register_scripts() {
+	$script_metadata = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
+	$polyfill_src    = SCRIPT_DEBUG ? 'src/index.js' : 'build/index.js';
+
 	wp_register_script(
 		'fast-smooth-scroll-scroll-behavior-polyfill',
-		plugin_dir_url( __FILE__ ) . 'scroll-behavior-polyfill.js',
-		array(),
-		FAST_SMOOTH_SCROLL_VERSION,
+		plugin_dir_url( __FILE__ ) . $polyfill_src,
+		$script_metadata['dependencies'],
+		$script_metadata['version'],
 		array( 'in_footer' => true )
 	);
 	wp_register_script(
 		'fast-smooth-scroll-polyfills',
 		false,
 		array(),
-		FAST_SMOOTH_SCROLL_VERSION,
+		null,
 		array( 'in_footer' => true )
 	);
 	wp_add_inline_script(

@@ -22,7 +22,7 @@ This plugin takes a no-frills approach to smooth scrolling, providing a fast and
 
 Simply enable the plugin, and any anchor links (i.e. links that point to other content on the same page) will provide a smooth scrolling experience rather than abruptly jumping to the destination content.
 
-The plugin relies on the latest smooth scrolling techniques using CSS. A very fast and lightweight JavaScript polyfill is included to equally support older browsers, including Internet Explorer. So you can rest assured this plugin covers your userbase.
+The plugin relies on the latest smooth scrolling techniques using CSS. A very fast and lightweight JavaScript polyfill (<1KB) is included to equally support older browsers, including Internet Explorer. So you can rest assured this plugin covers your userbase.
 
 = Why does this plugin exist? =
 
