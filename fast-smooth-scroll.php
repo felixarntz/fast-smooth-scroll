@@ -56,7 +56,7 @@ function fast_smooth_scroll_register_scripts() {
 		'fast-smooth-scroll-polyfills',
 		false,
 		array(),
-		null,
+		null, // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		array( 'in_footer' => true )
 	);
 	wp_add_inline_script(

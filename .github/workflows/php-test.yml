@@ -54,7 +54,7 @@ jobs:
         wordpress: [ 'latest' ]
         experimental: [false]
         include:
-          - php: '5.2'
+          - php: '5.3'
             wordpress: '5.0'
           - php: '5.6'
             wordpress: '5.2'
