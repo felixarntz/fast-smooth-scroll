@@ -97,6 +97,23 @@ function fast_smooth_scroll_enqueue_scripts() {
 		return;
 	}
 
+	/*
+	 * Administrators can force the polyfill to load by adding a query parameter `fast_smooth_scroll_debug_polyfill=1`
+	 * to any URL. In this case, the polyfill is unconditionally enqueued.
+	 * It also overrides the default scroll behavior to 'auto' to simulate the experience without 'smooth' scrolling
+	 * configured via CSS.
+	 */
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( current_user_can( 'manage_options' ) && ! empty( $_GET['fast_smooth_scroll_debug_polyfill'] ) ) {
+		wp_add_inline_script(
+			'fast-smooth-scroll-scroll-behavior-polyfill',
+			'document.documentElement.style.scrollBehavior = "auto";',
+			'before'
+		);
+		wp_enqueue_script( 'fast-smooth-scroll-scroll-behavior-polyfill' );
+		return;
+	}
+
 	wp_enqueue_script( 'fast-smooth-scroll-polyfills' );
 }
 add_action( 'wp_enqueue_scripts', 'fast_smooth_scroll_enqueue_scripts' );

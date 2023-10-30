@@ -96,4 +96,57 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 		$this->assertTrue( $loader_registered );
 		$this->assertFalse( $loader_enqueued );
 	}
+
+	public function test_fast_smooth_scroll_enqueue_scripts_with_debug_polyfill_param() {
+		global $wp_scripts;
+
+		// Store original `$wp_scripts`, then reset it.
+		$orig_wp_scripts = wp_scripts();
+		$wp_scripts      = null;
+
+		// Set the query parameter. It shouldn't change any behavior by itself.
+		$_GET['fast_smooth_scroll_debug_polyfill'] = '1';
+
+		fast_smooth_scroll_register_scripts();
+		fast_smooth_scroll_enqueue_scripts();
+
+		$polyfill_enqueued      = wp_script_is( 'fast-smooth-scroll-scroll-behavior-polyfill', 'enqueued' );
+		$loader_enqueued        = wp_script_is( 'fast-smooth-scroll-polyfills', 'enqueued' );
+		$polyfill_inline_script = wp_scripts()->get_inline_script_data( 'fast-smooth-scroll-scroll-behavior-polyfill', 'before' );
+
+		// Restore original `$wp_scripts`.
+		$wp_scripts = $orig_wp_scripts;
+
+		// Ensure that still only the loader is enqueued, as the query parameter can only be used by administrators.
+		$this->assertFalse( $polyfill_enqueued );
+		$this->assertTrue( $loader_enqueued );
+		$this->assertSame( '', $polyfill_inline_script );
+	}
+
+	public function test_fast_smooth_scroll_enqueue_scripts_with_debug_polyfill_param_and_administrator() {
+		global $wp_scripts;
+
+		// Store original `$wp_scripts`, then reset it.
+		$orig_wp_scripts = wp_scripts();
+		$wp_scripts      = null;
+
+		// Set the current user to an administrator, and set the query parameter. This should force load the polyfill.
+		wp_set_current_user( self::factory()->user->create( array( 'role' => 'administrator' ) ) );
+		$_GET['fast_smooth_scroll_debug_polyfill'] = '1';
+
+		fast_smooth_scroll_register_scripts();
+		fast_smooth_scroll_enqueue_scripts();
+
+		$polyfill_enqueued      = wp_script_is( 'fast-smooth-scroll-scroll-behavior-polyfill', 'enqueued' );
+		$loader_enqueued        = wp_script_is( 'fast-smooth-scroll-polyfills', 'enqueued' );
+		$polyfill_inline_script = wp_scripts()->get_inline_script_data( 'fast-smooth-scroll-scroll-behavior-polyfill', 'before' );
+
+		// Restore original `$wp_scripts`.
+		$wp_scripts = $orig_wp_scripts;
+
+		// Ensure that the polyfill is now force enqueued instead of the loader, and the extra inline script is added.
+		$this->assertTrue( $polyfill_enqueued );
+		$this->assertFalse( $loader_enqueued );
+		$this->assertSame( 'document.documentElement.style.scrollBehavior = "auto";', $polyfill_inline_script );
+	}
 }

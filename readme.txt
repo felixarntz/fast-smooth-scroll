@@ -69,6 +69,16 @@ add_filter( 'fast_smooth_scroll_enqueue_scripts', '__return_false' );
 
 `
 
+= How can I test the JavaScript polyfill? =
+
+Most likely, you are using a modern browser which therefore does not trigger the JavaScript polyfill to load.
+
+If you don't have a legacy browser handy, you can still test the behavior: You'll need to be logged in as an administrator, and then you can add a query parameter `fast_smooth_scroll_debug_polyfill=1` to any URL. For example, in case of the home page:
+
+`
+https://my-site.com/?fast_smooth_scroll_debug_polyfill=1
+`
+
 = Where should I submit my support request? =
 
 For regular support requests, please use the [wordpress.org support forums](https://wordpress.org/support/plugin/fast-smooth-scroll). If you have a technical issue with the plugin where you already have more insight on how to fix it, you can also [open an issue on GitHub instead](https://github.com/felixarntz/fast-smooth-scroll/issues).
