@@ -9,7 +9,7 @@
  * Plugin Name: Fast Smooth Scroll
  * Plugin URI: https://wordpress.org/plugins/fast-smooth-scroll/
  * Description: This lightweight plugin enhances user experience by enabling smooth scrolling for anchor links without the need for jQuery or other dependencies.
- * Version: 1.0.0
+ * Version: 1.0.0-beta.1
  * Requires at least: 5.0
  * Requires PHP: 5.2
  * Author: Felix Arntz
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Prints the inline style tag to set the CSS 'scroll-behavior' property.
  *
- * @since n.e.x.t
+ * @since 1.0.0
  */
 function fast_smooth_scroll_print_style() {
 	?>
@@ -39,7 +39,7 @@ add_action( 'wp_footer', 'fast_smooth_scroll_print_style' );
 /**
  * Registers the JavaScript polyfills for when the browser doesn't support the CSS 'scroll-behavior' property.
  *
- * @since n.e.x.t
+ * @since 1.0.0
  */
 function fast_smooth_scroll_register_scripts() {
 	global $wp_scripts;
@@ -76,7 +76,7 @@ add_action( 'init', 'fast_smooth_scroll_register_scripts' );
 /**
  * Enqueues the JavaScript that is conditionally used only if the browser doesn't support the CSS 'scroll-behavior' property.
  *
- * @since n.e.x.t
+ * @since 1.0.0
  */
 function fast_smooth_scroll_enqueue_scripts() {
 	/**
@@ -89,7 +89,7 @@ function fast_smooth_scroll_enqueue_scripts() {
 	 * development best practices, there may still be situations where you want to disable it completely, depending on
 	 * the browser support of the website's end users.
 	 *
-	 * @since n.e.x.t
+	 * @since 1.0.0
 	 *
 	 * @param bool $enqueue_scripts Whether to enqueue the JavaScript polyfills. Default true.
 	 */
