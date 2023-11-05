@@ -40,7 +40,7 @@ Eventually, once the plugin has been reviewed and approved in the WordPress plug
 Alternatively, if you use Composer to manage your WordPress site, you can also [install the plugin from Packagist](https://packagist.org/packages/felixarntz/fast-smooth-scroll):
 
 ```
-composer require felixarntz/fast-smooth-scroll:1.0.0-beta.1
+composer require felixarntz/fast-smooth-scroll:^1.0.0-beta.1
 ```
 
 ## Frequently asked questions
