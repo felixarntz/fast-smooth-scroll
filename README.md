@@ -37,6 +37,12 @@ For relevant browser support, see:
 
 Eventually, once the plugin has been reviewed and approved in the WordPress plugin repository, you will be able to install it from there. Until then, you can download a ZIP from the [GitHub releases page](https://github.com/felixarntz/fast-smooth-scroll/releases) and upload it to your WordPress site via _Plugins > Add New > Upload Plugin_.
 
+Alternatively, if you use Composer to manage your WordPress site, you can also [install the plugin from Packagist](https://packagist.org/packages/felixarntz/fast-smooth-scroll):
+
+```
+composer require felixarntz/fast-smooth-scroll:1.0.0-beta.1
+```
+
 ## Frequently asked questions
 
 ### Where can I configure the plugin?
