@@ -112,7 +112,7 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 
 		$polyfill_enqueued      = wp_script_is( 'fast-smooth-scroll-scroll-behavior-polyfill', 'enqueued' );
 		$loader_enqueued        = wp_script_is( 'fast-smooth-scroll-polyfills', 'enqueued' );
-		$polyfill_inline_script = wp_scripts()->get_inline_script_data( 'fast-smooth-scroll-scroll-behavior-polyfill', 'before' );
+		$polyfill_inline_script = $this->get_inline_script_data( 'fast-smooth-scroll-scroll-behavior-polyfill', 'before' );
 
 		// Restore original `$wp_scripts`.
 		$wp_scripts = $orig_wp_scripts;
@@ -139,7 +139,7 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 
 		$polyfill_enqueued      = wp_script_is( 'fast-smooth-scroll-scroll-behavior-polyfill', 'enqueued' );
 		$loader_enqueued        = wp_script_is( 'fast-smooth-scroll-polyfills', 'enqueued' );
-		$polyfill_inline_script = wp_scripts()->get_inline_script_data( 'fast-smooth-scroll-scroll-behavior-polyfill', 'before' );
+		$polyfill_inline_script = $this->get_inline_script_data( 'fast-smooth-scroll-scroll-behavior-polyfill', 'before' );
 
 		// Restore original `$wp_scripts`.
 		$wp_scripts = $orig_wp_scripts;
@@ -148,5 +148,26 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 		$this->assertTrue( $polyfill_enqueued );
 		$this->assertFalse( $loader_enqueued );
 		$this->assertSame( 'document.documentElement.style.scrollBehavior = "auto";', $polyfill_inline_script );
+	}
+
+	/**
+	 * Workaround (almost polyfill) for `WP_Scripts::get_inline_script_data()` (introduced in WordPress 6.3).
+	 *
+	 * @param string $handle   Name of the script to get data for.
+	 * @param string $position Optional. Whether to add the inline script before the handle or after. Default 'after'.
+	 * @return string Inline script, which may be empty string.
+	 */
+	private function get_inline_script_data( $handle, $position = 'after' ) {
+		$wp_scripts = wp_scripts();
+
+		if ( method_exists( $wp_scripts, 'get_inline_script_data' ) ) {
+			return $wp_scripts->get_inline_script_data( $handle, $position );
+		}
+
+		$data = $wp_scripts->get_data( $handle, $position );
+		if ( empty( $data ) || ! is_array( $data ) ) {
+			return '';
+		}
+		return trim( implode( "\n", $data ), "\n" );
 	}
 }
