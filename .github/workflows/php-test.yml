@@ -91,11 +91,11 @@ jobs:
         run: npm run wp-env start
 
       - name: Fix wp-tests-config.php for WordPress versions 5.1-5.3
-        run: npm run wp-env run tests-wordpress -- sh -c "sed -e \"/^require.*wp-settings.php/d\" -e \"s/define( 'ABSPATH', dirname( __FILE__ ) . '\\/' );/define( 'ABSPATH', '\\/var\\/www\\/html\\/' );\\n\\tdefine( 'WP_DEFAULT_THEME', 'default' );/\" /var/www/html/wp-config.php > /wordpress-phpunit/wp-tests-config.php"
+        run: npm run wp-env run tests-wordpress -- sh -c "sed -i -e \"s/define( 'ABSPATH', dirname( __FILE__ ) . '\\/' );/define( 'ABSPATH', '\\/var\\/www\\/html\\/' );\\n\\tdefine( 'WP_DEFAULT_THEME', 'default' );/\" /wordpress-phpunit/wp-tests-config.php"
         if: startsWith(matrix.wordpress, '5.') && !startsWith(matrix.wordpress, '5.0')
 
       - name: Fix wp-tests-config.php for WordPress versions 5.0 and older
-        run: npm run wp-env run tests-wordpress -- sh -c "sed -e \"/^require.*wp-settings.php/d\" -e \"s/define('ABSPATH', dirname(__FILE__) . '\\/');/define( 'ABSPATH', '\\/var\\/www\\/html\\/' );\\n\\tdefine( 'WP_DEFAULT_THEME', 'default' );/\" /var/www/html/wp-config.php > /wordpress-phpunit/wp-tests-config.php"
+        run: npm run wp-env run tests-wordpress -- sh -c "sed -i -e \"s/define('ABSPATH', dirname(__FILE__) . '\\/');/define( 'ABSPATH', '\\/var\\/www\\/html\\/' );\\n\\tdefine( 'WP_DEFAULT_THEME', 'default' );/\" /wordpress-phpunit/wp-tests-config.php"
         if: startsWith(matrix.wordpress, '4.') || startsWith(matrix.wordpress, '5.0')
 
       - name: Running PHPUnit tests
