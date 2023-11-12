@@ -77,6 +77,12 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 		// Restore original `$wp_scripts`.
 		$wp_scripts = $orig_wp_scripts;
 
+		if ( ! method_exists( $this, 'assertStringNotContainsString' ) ) {
+			$this->assertFalse( strpos( $polyfill_inline_script, 'var fastSmoothScrollOffset = ' ) );
+			$this->assertFalse( strpos( $polyfills_inline_script, 'var fastSmoothScrollOffset = ' ) );
+			return;
+		}
+
 		$this->assertStringNotContainsString( 'var fastSmoothScrollOffset = ', $polyfill_inline_script );
 		$this->assertStringNotContainsString( 'var fastSmoothScrollOffset = ', $polyfills_inline_script );
 	}
