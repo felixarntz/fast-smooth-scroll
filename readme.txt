@@ -93,3 +93,9 @@ You can also contribute to the plugin by translating it. Simply visit [translate
 
 = 1.0.0 =
 * First stable version
+
+= 1.0.0-beta.2 =
+* Enhanced: Avoid unnecessarily set `scroll-behavior` style property on the `html` element.
+
+= 1.0.0-beta.1 =
+* First beta release

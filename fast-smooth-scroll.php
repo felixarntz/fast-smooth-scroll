@@ -30,8 +30,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 function fast_smooth_scroll_print_style() {
+	$html_rules = array( 'scroll-behavior: smooth' );
+
 	?>
-	<style id="fast-smooth-scroll-css" type="text/css">html { scroll-behavior: smooth; }</style>
+	<style id="fast-smooth-scroll-css" type="text/css">html { <?php echo esc_js( implode( '; ', $html_rules ) . ';' ); ?> }</style>
 	<?php
 }
 add_action( 'wp_footer', 'fast_smooth_scroll_print_style' );
@@ -66,7 +68,7 @@ function fast_smooth_scroll_register_scripts() {
 		wp_get_script_polyfill(
 			$wp_scripts,
 			array(
-				'document.documentElement && document.documentElement.style.scrollBehavior !== undefined && ( document.documentElement.style.scrollBehavior = "smooth" || true ) && document.documentElement.style.scrollBehavior === "smooth"' => 'fast-smooth-scroll-scroll-behavior-polyfill',
+				'document.documentElement && document.documentElement.style.scrollBehavior !== undefined && ( document.documentElement.style.scrollBehavior = "smooth" || true ) && document.documentElement.style.scrollBehavior === "smooth" && ( document.documentElement.style.removeProperty( "scroll-behavior" ) || true )' => 'fast-smooth-scroll-scroll-behavior-polyfill',
 			)
 		)
 	);
