@@ -28,6 +28,8 @@ To support older browsers as well, a lightweight JavaScript polyfill is included
 
 For relevant browser support, see:
 * [CSS Scroll-behavior](https://caniuse.com/css-scroll-behavior)
+* [CSS property: scroll-padding-top](https://caniuse.com/mdn-css_properties_scroll-padding-top)
+* [prefers-reduced-motion media query](https://caniuse.com/prefers-reduced-motion)
 * [requestAnimationFrame](https://caniuse.com/requestanimationframe)
 * [High Resolution Time API](https://caniuse.com/high-resolution-time)
 * [NodeList API](https://caniuse.com/mdn-api_nodelist)
@@ -48,6 +50,30 @@ composer require felixarntz/fast-smooth-scroll:^1.0.0-beta.1
 ### Where can I configure the plugin?
 
 This plugin doesn't come with a settings screen or options of any kind. You install it, and it just works.
+
+### Why is the scrolling slightly off vertically?
+
+If the anchor scrolling doesn't end up in exactly the right place, there is a good chance this is happening because your site uses a fixed header or another element that overlaps the main content.
+
+For such situations, the plugin supports setting a scroll offset. You can use the filter `fast_smooth_scroll_offset` to set such an offset in pixels (default is 0, i.e. no offset).
+
+For example, with the following code you would set a scroll offset of 120 pixels. This works for both the default CSS-only implementation as well as for the JavaScript polyfill.
+
+```php
+<?php
+
+function myplugin_get_custom_scroll_offset() {
+	return 120;
+}
+add_filter( 'fast_smooth_scroll_offset', 'myplugin_get_custom_scroll_offset' );
+
+```
+
+### Does the plugin support reduced motion preferences?
+
+Yes! For better accessibility, clients that are configured to reduce motion will not be affected by the smooth scroll behavior.
+
+The `prefers-reduced-motion` media query is used to detect such a preference. Note that this only works with the CSS-only solution, as the older browsers that would require the JavaScript polyfill do not support this preference.
 
 ### I don't care about smooth scrolling for older browsers. How can I disable the JavaScript polyfill?
 
