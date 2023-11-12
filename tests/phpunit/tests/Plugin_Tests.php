@@ -23,6 +23,11 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 			return;
 		}
 		$this->assertMatchesRegularExpression( $pattern, $output );
+
+		if ( ! method_exists( $this, 'assertStringContainsString' ) ) {
+			$this->assertTrue( false !== strpos( $output, '@media (prefers-reduced-motion: reduce) {' ) );
+			return;
+		}
 		$this->assertStringContainsString( '@media (prefers-reduced-motion: reduce) {', $output );
 	}
 
@@ -82,7 +87,6 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 			$this->assertFalse( strpos( $polyfills_inline_script, 'var fastSmoothScrollOffset = ' ) );
 			return;
 		}
-
 		$this->assertStringNotContainsString( 'var fastSmoothScrollOffset = ', $polyfill_inline_script );
 		$this->assertStringNotContainsString( 'var fastSmoothScrollOffset = ', $polyfills_inline_script );
 	}
@@ -103,6 +107,11 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 		// Restore original `$wp_scripts`.
 		$wp_scripts = $orig_wp_scripts;
 
+		if ( ! method_exists( $this, 'assertStringContainsString' ) ) {
+			$this->assertTrue( false !== strpos( $polyfill_inline_script, 'var fastSmoothScrollOffset = 120;' ) );
+			$this->assertTrue( false !== strpos( $polyfills_inline_script, 'var fastSmoothScrollOffset = 120;' ) );
+			return;
+		}
 		$this->assertStringContainsString( 'var fastSmoothScrollOffset = 120;', $polyfill_inline_script );
 		$this->assertStringContainsString( 'var fastSmoothScrollOffset = 120;', $polyfills_inline_script );
 	}
