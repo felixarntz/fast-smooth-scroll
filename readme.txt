@@ -40,6 +40,8 @@ To support older browsers as well, a lightweight JavaScript polyfill is included
 
 For relevant browser support, see:
 * [CSS Scroll-behavior](https://caniuse.com/css-scroll-behavior)
+* [CSS property: scroll-padding-top](https://caniuse.com/mdn-css_properties_scroll-padding-top)
+* [prefers-reduced-motion media query](https://caniuse.com/prefers-reduced-motion)
 * [requestAnimationFrame](https://caniuse.com/requestanimationframe)
 * [High Resolution Time API](https://caniuse.com/high-resolution-time)
 * [NodeList API](https://caniuse.com/mdn-api_nodelist)
@@ -73,6 +75,12 @@ function myplugin_get_custom_scroll_offset() {
 add_filter( 'fast_smooth_scroll_offset', 'myplugin_get_custom_scroll_offset' );
 
 `
+
+= Does the plugin support reduced motion preferences? =
+
+Yes! For better accessibility, clients that are configured to reduce motion will not be affected by the smooth scroll behavior.
+
+The `prefers-reduced-motion` media query is used to detect such a preference. Note that this only works with the CSS-only solution, as the older browsers that would require the JavaScript polyfill do not support this preference.
 
 = I don't care about smooth scrolling for older browsers. How can I disable the JavaScript polyfill? =
 
@@ -113,7 +121,8 @@ You can also contribute to the plugin by translating it. Simply visit [translate
 * First stable version
 
 = 1.0.0-beta.2 =
-* Enhanced: Introduce support for optional scroll offset via new filter `fast_smooth_scroll_offset`.
+* Enhanced: Introduce support for optional scroll offset via new filter `fast_smooth_scroll_offset`. Props erikyo.
+* Fixed: Support `prefers-reduced-motion` and disable smooth scrolling if reduced motion is preferred. Props queerdevperson.
 * Fixed: Avoid unnecessarily set `scroll-behavior` style property on the `html` element.
 
 = 1.0.0-beta.1 =

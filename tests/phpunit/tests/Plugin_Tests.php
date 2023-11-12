@@ -17,19 +17,20 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 	public function test_fast_smooth_scroll_print_style() {
 		$output = get_echo( 'fast_smooth_scroll_print_style' );
 
-		$pattern = '/>\s*html\s*\{\s*scroll-behavior:\s*smooth;\s*\}\s*</';
+		$pattern = '/>\s*html\s*\{\s*scroll-behavior:\s*smooth;\s*\}\s*/';
 		if ( ! method_exists( $this, 'assertMatchesRegularExpression' ) ) {
 			$this->assertRegExp( $pattern, $output );
 			return;
 		}
 		$this->assertMatchesRegularExpression( $pattern, $output );
+		$this->assertStringContainsString( '@media (prefers-reduced-motion: reduce) {', $output );
 	}
 
 	public function test_fast_smooth_scroll_print_style_prints_offset_with_filter() {
 		add_filter( 'fast_smooth_scroll_offset', array( $this, 'return_120' ) );
 		$output = get_echo( 'fast_smooth_scroll_print_style' );
 
-		$pattern = '/>\s*html\s*\{\s*scroll-behavior:\s*smooth;\s*scroll-padding-top:\s*120px;\s*\}\s*</';
+		$pattern = '/>\s*html\s*\{\s*scroll-behavior:\s*smooth;\s*scroll-padding-top:\s*120px;\s*\}\s*/';
 		if ( ! method_exists( $this, 'assertMatchesRegularExpression' ) ) {
 			$this->assertRegExp( $pattern, $output );
 			return;

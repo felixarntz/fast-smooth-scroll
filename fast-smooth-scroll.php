@@ -38,7 +38,12 @@ function fast_smooth_scroll_print_style() {
 	}
 
 	?>
-	<style id="fast-smooth-scroll-css" type="text/css">html { <?php echo esc_js( implode( '; ', $html_rules ) . ';' ); ?> }</style>
+	<style id="fast-smooth-scroll-css" type="text/css">
+		html { <?php echo esc_js( implode( '; ', $html_rules ) . ';' ); ?> }
+		@media (prefers-reduced-motion: reduce) {
+			html { scroll-behavior: auto; }
+		}
+	</style>
 	<?php
 }
 add_action( 'wp_footer', 'fast_smooth_scroll_print_style' );
