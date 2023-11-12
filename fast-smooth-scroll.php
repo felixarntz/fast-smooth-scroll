@@ -32,6 +32,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 function fast_smooth_scroll_print_style() {
 	$html_rules = array( 'scroll-behavior: smooth' );
 
+	$scroll_offset = fast_smooth_scroll_get_offset();
+	if ( $scroll_offset ) {
+		$html_rules[] = 'scroll-padding-top: ' . (int) $scroll_offset . 'px';
+	}
+
 	?>
 	<style id="fast-smooth-scroll-css" type="text/css">html { <?php echo esc_js( implode( '; ', $html_rules ) . ';' ); ?> }</style>
 	<?php
@@ -49,6 +54,11 @@ function fast_smooth_scroll_register_scripts() {
 	$script_metadata = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
 	$polyfill_src    = SCRIPT_DEBUG ? 'src/index.js' : 'build/index.js';
 
+	$scroll_offset = fast_smooth_scroll_get_offset();
+	if ( $scroll_offset ) {
+		$data_script = 'var fastSmoothScrollOffset = ' . (int) $scroll_offset . ';';
+	}
+
 	wp_register_script(
 		'fast-smooth-scroll-scroll-behavior-polyfill',
 		plugin_dir_url( __FILE__ ) . $polyfill_src,
@@ -56,6 +66,10 @@ function fast_smooth_scroll_register_scripts() {
 		$script_metadata['version'],
 		array( 'in_footer' => true )
 	);
+	if ( isset( $data_script ) ) {
+		wp_add_inline_script( 'fast-smooth-scroll-scroll-behavior-polyfill', $data_script, 'before' );
+	}
+
 	wp_register_script(
 		'fast-smooth-scroll-polyfills',
 		false,
@@ -63,6 +77,9 @@ function fast_smooth_scroll_register_scripts() {
 		null, // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		array( 'in_footer' => true )
 	);
+	if ( isset( $data_script ) ) {
+		wp_add_inline_script( 'fast-smooth-scroll-polyfills', $data_script, 'before' );
+	}
 	wp_add_inline_script(
 		'fast-smooth-scroll-polyfills',
 		wp_get_script_polyfill(
@@ -119,3 +136,21 @@ function fast_smooth_scroll_enqueue_scripts() {
 	wp_enqueue_script( 'fast-smooth-scroll-polyfills' );
 }
 add_action( 'wp_enqueue_scripts', 'fast_smooth_scroll_enqueue_scripts' );
+
+/**
+ * Returns the scroll offset to use.
+ *
+ * @since 1.0.0
+ *
+ * @return int Scroll offset in pixels.
+ */
+function fast_smooth_scroll_get_offset() {
+	/**
+	 * Filters the scroll offset to use.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int $offset Scroll offset in pixels. Will only be applied if greater than 0. Default 0.
+	 */
+	return (int) apply_filters( 'fast_smooth_scroll_offset', 0 );
+}

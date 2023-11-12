@@ -56,6 +56,24 @@ For relevant browser support, see:
 
 This plugin doesn't come with a settings screen or options of any kind. You install it, and it just works.
 
+= Why is the scrolling slightly off vertically? =
+
+If the anchor scrolling doesn't end up in exactly the right place, there is a good chance this is happening because your site uses a fixed header or another element that overlaps the main content.
+
+For such situations, the plugin supports setting a scroll offset. You can use the filter `fast_smooth_scroll_offset` to set such an offset in pixels (default is 0, i.e. no offset).
+
+For example, with the following code you would set a scroll offset of 120 pixels. This works for both the default CSS-only implementation as well as for the JavaScript polyfill.
+
+`
+<?php
+
+function myplugin_get_custom_scroll_offset() {
+	return 120;
+}
+add_filter( 'fast_smooth_scroll_offset', 'myplugin_get_custom_scroll_offset' );
+
+`
+
 = I don't care about smooth scrolling for older browsers. How can I disable the JavaScript polyfill? =
 
 Since the JavaScript polyfill is only loaded when needed and is extremely lightweight, there's probably not much value in disabling it. However, if you want to go for the purist solution of only relying on the CSS approach, you can certainly do so, using the built-in filter `fast_smooth_scroll_enqueue_scripts`, which defaults to `true`.
@@ -95,7 +113,8 @@ You can also contribute to the plugin by translating it. Simply visit [translate
 * First stable version
 
 = 1.0.0-beta.2 =
-* Enhanced: Avoid unnecessarily set `scroll-behavior` style property on the `html` element.
+* Enhanced: Introduce support for optional scroll offset via new filter `fast_smooth_scroll_offset`.
+* Fixed: Avoid unnecessarily set `scroll-behavior` style property on the `html` element.
 
 = 1.0.0-beta.1 =
 * First beta release

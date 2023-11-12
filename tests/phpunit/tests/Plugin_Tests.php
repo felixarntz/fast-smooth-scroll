@@ -17,11 +17,24 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 	public function test_fast_smooth_scroll_print_style() {
 		$output = get_echo( 'fast_smooth_scroll_print_style' );
 
+		$pattern = '/>\s*html\s*\{\s*scroll-behavior:\s*smooth;\s*\}\s*</';
 		if ( ! method_exists( $this, 'assertMatchesRegularExpression' ) ) {
-			$this->assertRegExp( '/>\s*html\s*\{\s*scroll-behavior:\s*smooth;\s*\}\s*</', $output );
+			$this->assertRegExp( $pattern, $output );
 			return;
 		}
-		$this->assertMatchesRegularExpression( '/>\s*html\s*\{\s*scroll-behavior:\s*smooth;\s*\}\s*</', $output );
+		$this->assertMatchesRegularExpression( $pattern, $output );
+	}
+
+	public function test_fast_smooth_scroll_print_style_prints_offset_with_filter() {
+		add_filter( 'fast_smooth_scroll_offset', array( $this, 'return_120' ) );
+		$output = get_echo( 'fast_smooth_scroll_print_style' );
+
+		$pattern = '/>\s*html\s*\{\s*scroll-behavior:\s*smooth;\s*scroll-padding-top:\s*120px;\s*\}\s*</';
+		if ( ! method_exists( $this, 'assertMatchesRegularExpression' ) ) {
+			$this->assertRegExp( $pattern, $output );
+			return;
+		}
+		$this->assertMatchesRegularExpression( $pattern, $output );
 	}
 
 	public function test_fast_smooth_scroll_register_scripts() {
@@ -46,6 +59,45 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 		$this->assertFalse( $polyfill_enqueued );
 		$this->assertTrue( $loader_registered );
 		$this->assertFalse( $loader_enqueued );
+	}
+
+	public function test_fast_smooth_scroll_register_scripts_does_not_print_offset_script_by_default() {
+		global $wp_scripts;
+
+		// Store original `$wp_scripts`, then reset it.
+		$orig_wp_scripts = wp_scripts();
+		$wp_scripts      = null;
+
+		fast_smooth_scroll_register_scripts();
+
+		$polyfill_inline_script  = $this->get_inline_script_data( 'fast-smooth-scroll-scroll-behavior-polyfill', 'before' );
+		$polyfills_inline_script = $this->get_inline_script_data( 'fast-smooth-scroll-polyfills', 'before' );
+
+		// Restore original `$wp_scripts`.
+		$wp_scripts = $orig_wp_scripts;
+
+		$this->assertStringNotContainsString( 'var fastSmoothScrollOffset = ', $polyfill_inline_script );
+		$this->assertStringNotContainsString( 'var fastSmoothScrollOffset = ', $polyfills_inline_script );
+	}
+
+	public function test_fast_smooth_scroll_register_scripts_prints_offset_script_with_filter() {
+		global $wp_scripts;
+
+		// Store original `$wp_scripts`, then reset it.
+		$orig_wp_scripts = wp_scripts();
+		$wp_scripts      = null;
+
+		add_filter( 'fast_smooth_scroll_offset', array( $this, 'return_120' ) );
+		fast_smooth_scroll_register_scripts();
+
+		$polyfill_inline_script  = $this->get_inline_script_data( 'fast-smooth-scroll-scroll-behavior-polyfill', 'before' );
+		$polyfills_inline_script = $this->get_inline_script_data( 'fast-smooth-scroll-polyfills', 'before' );
+
+		// Restore original `$wp_scripts`.
+		$wp_scripts = $orig_wp_scripts;
+
+		$this->assertStringContainsString( 'var fastSmoothScrollOffset = 120;', $polyfill_inline_script );
+		$this->assertStringContainsString( 'var fastSmoothScrollOffset = 120;', $polyfills_inline_script );
 	}
 
 	public function test_fast_smooth_scroll_enqueue_scripts() {
@@ -148,6 +200,17 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 		$this->assertTrue( $polyfill_enqueued );
 		$this->assertFalse( $loader_enqueued );
 		$this->assertSame( 'document.documentElement.style.scrollBehavior = "auto";', $polyfill_inline_script );
+	}
+
+	public function test_fast_smooth_scroll_get_offset() {
+		$this->assertSame( 0, fast_smooth_scroll_get_offset() );
+
+		add_filter( 'fast_smooth_scroll_offset', array( $this, 'return_120' ) );
+		$this->assertSame( 120, fast_smooth_scroll_get_offset() );
+	}
+
+	public function return_120() {
+		return 120;
 	}
 
 	/**

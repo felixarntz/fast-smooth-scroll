@@ -64,12 +64,12 @@
 		if ( ! targetElement ) {
 			return;
 		}
+		var targetOffset = targetElement.offsetTop;
+		if ( window.fastSmoothScrollOffset ) {
+			targetOffset = targetOffset - window.fastSmoothScrollOffset;
+		}
 
-		smoothScrollAnimation(
-			window.pageYOffset,
-			targetElement.offsetTop,
-			500
-		);
+		smoothScrollAnimation( window.pageYOffset, targetOffset, 500 );
 		window.location.hash = '#' + targetId;
 	}
 
