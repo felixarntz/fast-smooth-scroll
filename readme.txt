@@ -1,7 +1,7 @@
 === Fast Smooth Scroll ===
 
 Plugin Name:       Fast Smooth Scroll
-Plugin URI:        https://github.com/felixarntz/fast-smooth-scroll
+Plugin URI:        https://wordpress.org/plugins/fast-smooth-scroll/
 Author:            Felix Arntz
 Author URI:        https://felix-arntz.me
 Contributors:      flixos90

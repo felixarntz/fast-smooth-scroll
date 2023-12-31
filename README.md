@@ -39,67 +39,18 @@ For relevant browser support, see:
 
 ## Installation and usage
 
-Eventually, once the plugin has been reviewed and approved in the WordPress plugin repository, you will be able to install it from there. Until then, you can download a ZIP from the [GitHub releases page](https://github.com/felixarntz/fast-smooth-scroll/releases) and upload it to your WordPress site via _Plugins > Add New > Upload Plugin_.
+You can download the latest version from the [WordPress plugin repository](https://wordpress.org/plugins/fast-smooth-scroll/).
+
+Please see the [plugin repository installation instructions](https://wordpress.org/plugins/fast-smooth-scroll/#installation) for detailed information on installation and the [plugin repository FAQ](https://wordpress.org/plugins/fast-smooth-scroll/#faq) for additional details on usage and customization.
 
 Alternatively, if you use Composer to manage your WordPress site, you can also [install the plugin from Packagist](https://packagist.org/packages/felixarntz/fast-smooth-scroll):
 
 ```
-composer require felixarntz/fast-smooth-scroll:^1.0.0-beta.2
-```
-
-## Frequently asked questions
-
-### Where can I configure the plugin?
-
-This plugin doesn't come with a settings screen or options of any kind. You install it, and it just works.
-
-### Why is the scrolling slightly off vertically?
-
-If the anchor scrolling doesn't end up in exactly the right place, there is a good chance this is happening because your site uses a fixed header or another element that overlaps the main content.
-
-For such situations, the plugin supports setting a scroll offset. You can use the filter `fast_smooth_scroll_offset` to set such an offset in pixels (default is 0, i.e. no offset).
-
-For example, with the following code you would set a scroll offset of 120 pixels. This works for both the default CSS-only implementation as well as for the JavaScript polyfill.
-
-```php
-<?php
-
-function myplugin_get_custom_scroll_offset() {
-	return 120;
-}
-add_filter( 'fast_smooth_scroll_offset', 'myplugin_get_custom_scroll_offset' );
-
-```
-
-### Does the plugin support reduced motion preferences?
-
-Yes! For better accessibility, clients that are configured to reduce motion will not be affected by the smooth scroll behavior.
-
-The `prefers-reduced-motion` media query is used to detect such a preference. Note that this only works with the CSS-only solution, as the older browsers that would require the JavaScript polyfill do not support this preference.
-
-### I don't care about smooth scrolling for older browsers. How can I disable the JavaScript polyfill?
-
-Since the JavaScript polyfill is only loaded when needed and is extremely lightweight, there's probably not much value in disabling it. However, if you want to go for the purist solution of only relying on the CSS approach, you can certainly do so, using the built-in filter `fast_smooth_scroll_enqueue_scripts`, which defaults to `true`.
-
-For example, with the following code you would ensure the JavaScript polyfill and even the simple feature detection check are never loaded:
-
-```php
-<?php
-
-add_filter( 'fast_smooth_scroll_enqueue_scripts', '__return_false' );
-
-```
-
-### How can I test the JavaScript polyfill?
-
-Most likely, you are using a modern browser which therefore does not trigger the JavaScript polyfill to load.
-
-If you don't have a legacy browser handy, you can still test the behavior: You'll need to be logged in as an administrator, and then you can add a query parameter `fast_smooth_scroll_debug_polyfill=1` to any URL. For example, in case of the home page:
-
-```
-https://my-site.com/?fast_smooth_scroll_debug_polyfill=1
+composer require felixarntz/fast-smooth-scroll:^1.0
 ```
 
 ## Contributions
 
 If you have ideas to improve the plugin or to solve a bug, feel free to raise an issue or submit a pull request right here on GitHub. Please refer to the [contributing guidelines](https://github.com/felixarntz/fast-smooth-scroll/blob/main/CONTRIBUTING.md) to learn more and get started.
+
+You can also contribute to the plugin by translating it. Simply visit [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/fast-smooth-scroll) to get started.

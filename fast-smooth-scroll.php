@@ -7,7 +7,7 @@
  *
  * @wordpress-plugin
  * Plugin Name: Fast Smooth Scroll
- * Plugin URI: https://github.com/felixarntz/fast-smooth-scroll
+ * Plugin URI: https://wordpress.org/plugins/fast-smooth-scroll/
  * Description: This lightweight plugin enhances user experience by enabling smooth scrolling for anchor links without the need for jQuery or other dependencies.
  * Version: 1.0.0-beta.2
  * Requires at least: 5.0
