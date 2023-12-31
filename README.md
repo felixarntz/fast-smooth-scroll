@@ -18,7 +18,9 @@ Smooth scrolling is a basic feature to enhance user experience, so it shouldn't 
 
 Several other smooth scrolling solutions unfortunately rely on outdated techniques such as jQuery, which can hurt your site's performance, and is really not necessary to provide the feature. Even browsers as old as 10 years don't need jQuery to achieve smooth scrolling. In fact, as of today you can achieve the behavior with only CSS, not even requiring any JavaScript.
 
-You may already use a smooth scrolling plugin, but it is worth double checking that it doesn't use one of those outdated and inefficient approaches that may slow down your site or affect user interactions negatively.
+Another potential reason to use this plugin over other smooth scrolling solutions is accessibility: This plugin respects the user preferences around reduced motion, which can avoid discomfort for those with [vestibular motion disorders](https://www.a11yproject.com/posts/understanding-vestibular-disorders/).
+
+You may already use a smooth scrolling plugin, but it is worth double checking that it doesn't use one of those outdated, inefficient, and inaccessible approaches that may slow down your site or affect user interactions negatively.
 
 ## More technical details
 
