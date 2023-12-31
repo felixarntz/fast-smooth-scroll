@@ -18,7 +18,7 @@ This lightweight plugin enhances user experience by enabling smooth scrolling fo
 
 == Description ==
 
-This plugin takes a **no-frills approach** to smooth scrolling, providing a **fast and performant user experience**.
+This plugin takes a **no-frills approach** to smooth scrolling, providing a **fast, performant, and accessible user experience**.
 
 **Simply enable the plugin**, and any anchor links (i.e. links that point to other content on the same page) will provide a smooth scrolling experience rather than abruptly jumping to the destination content.
 

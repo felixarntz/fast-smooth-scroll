@@ -1,15 +1,15 @@
-[![PHP Unit Testing](https://img.shields.io/github/actions/workflow/status/felixarntz/fast-smooth-scroll/php-test.yml?style=for-the-badge&label=PHP%20Unit%20Testing)](https://github.com/felixarntz/fast-smooth-scroll/actions/workflows/php-test.yml)
-[![Packagist version](https://img.shields.io/packagist/v/felixarntz/fast-smooth-scroll?style=for-the-badge)](https://packagist.org/packages/felixarntz/fast-smooth-scroll)
-[![Packagist license](https://img.shields.io/packagist/l/felixarntz/fast-smooth-scroll?style=for-the-badge)](https://packagist.org/packages/felixarntz/fast-smooth-scroll)
 [![WordPress plugin version](https://img.shields.io/wordpress/plugin/v/fast-smooth-scroll?style=for-the-badge)](https://wordpress.org/plugins/fast-smooth-scroll/)
 [![WordPress tested version](https://img.shields.io/wordpress/plugin/tested/fast-smooth-scroll?style=for-the-badge)](https://wordpress.org/plugins/fast-smooth-scroll/)
 [![WordPress plugin downloads](https://img.shields.io/wordpress/plugin/dt/fast-smooth-scroll?style=for-the-badge)](https://wordpress.org/plugins/fast-smooth-scroll/)
+[![PHP Unit Testing](https://img.shields.io/github/actions/workflow/status/felixarntz/fast-smooth-scroll/php-test.yml?style=for-the-badge&label=PHP%20Unit%20Testing)](https://github.com/felixarntz/fast-smooth-scroll/actions/workflows/php-test.yml)
+[![Packagist version](https://img.shields.io/packagist/v/felixarntz/fast-smooth-scroll?style=for-the-badge)](https://packagist.org/packages/felixarntz/fast-smooth-scroll)
+[![Packagist license](https://img.shields.io/packagist/l/felixarntz/fast-smooth-scroll?style=for-the-badge)](https://packagist.org/packages/felixarntz/fast-smooth-scroll)
 
 # Fast Smooth Scroll
 
 This lightweight plugin enhances user experience by enabling smooth scrolling for anchor links without the need for jQuery or other dependencies.
 
-This plugin takes a **no-frills approach** to smooth scrolling, providing a **fast and performant user experience**.
+This plugin takes a **no-frills approach** to smooth scrolling, providing a **fast, performant, and accessible user experience**.
 
 **Simply enable the plugin**, and any anchor links (i.e. links that point to other content on the same page) will provide a smooth scrolling experience rather than abruptly jumping to the destination content.
 
