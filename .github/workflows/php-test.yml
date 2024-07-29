@@ -41,7 +41,7 @@ concurrency:
 
 jobs:
   php-test:
-    name: PHP ${{ matrix.php }} - WP ${{ matrix.wordpress }}${{ matrix.experimental && ' (experimental)' || '' }}
+    name: PHP ${{ matrix.php }} - WP ${{ matrix.wordpress }} - ${{ matrix.multisite && 'Multisite' || 'Single site' }}${{ matrix.experimental && ' (experimental)' || '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -53,16 +53,34 @@ jobs:
         - '8.1'
         - '8.2'
         wordpress: [ 'latest' ]
+        multisite: [ false, true ]
         experimental: [false]
         include:
           - php: '5.6'
             wordpress: '5.0'
+            multisite: false
+          - php: '5.6'
+            wordpress: '5.0'
+            multisite: true
           - php: '5.6'
             wordpress: '5.2'
+            multisite: false
+          - php: '5.6'
+            wordpress: '5.2'
+            multisite: true
           - php: '7.0'
             wordpress: '6.0'
+            multisite: false
+          - php: '7.0'
+            wordpress: '6.0'
+            multisite: true
           - php: '8.2'
             wordpress: 'trunk'
+            multisite: false
+            experimental: true
+          - php: '8.2'
+            wordpress: 'trunk'
+            multisite: true
             experimental: true
     env:
       WP_ENV_PHP_VERSION: ${{ matrix.php }}
@@ -76,6 +94,8 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js (.nvmrc)
         uses: actions/setup-node@v4
@@ -101,8 +121,5 @@ jobs:
         run: npm run wp-env run tests-wordpress -- sh -c "sed -i -e \"s/define('ABSPATH', dirname(__FILE__) . '\\/');/define( 'ABSPATH', '\\/var\\/www\\/html\\/' );\\n\\tdefine( 'WP_DEFAULT_THEME', 'default' );/\" /wordpress-phpunit/wp-tests-config.php"
         if: startsWith(matrix.wordpress, '4.') || startsWith(matrix.wordpress, '5.0')
 
-      - name: Running PHPUnit tests
-        run: npm run test-php
-
-      - name: Running PHPUnit tests for multisite
-        run: npm run test-php-multisite
+      - name: Running ${{ matrix.multisite && 'multisite' || 'single site' }} unit tests
+        run: npm run test-php${{ matrix.multisite && '-multisite' || '' }}
