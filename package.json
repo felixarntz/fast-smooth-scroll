@@ -22,9 +22,9 @@
   },
   "repository": "git+https://github.com/felixarntz/fast-smooth-scroll.git",
   "devDependencies": {
-    "@wordpress/env": "^8.7.0",
-    "@wordpress/scripts": "^26.19.0",
-		"fast-glob": "^3.2.12"
+    "@wordpress/env": "^10.4.0",
+    "@wordpress/scripts": "^28.4.0",
+		"fast-glob": "^3.3.2"
   },
   "scripts": {
     "build": "wp-scripts build",
