@@ -17,7 +17,7 @@
  * License: GNU General Public License v2 (or later)
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: fast-smooth-scroll
- * Tags: smooth scroll, smooth scrolling, scroll animation, scroll behavior, performance, anchor links, user experience, lightweight
+ * Tags: smooth scroll, scroll animation, performance, anchor links, lightweight
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
