@@ -1,18 +1,16 @@
 === Fast Smooth Scroll ===
 
-Plugin Name:       Fast Smooth Scroll
-Plugin URI:        https://wordpress.org/plugins/fast-smooth-scroll/
-Author:            Felix Arntz
-Author URI:        https://felix-arntz.me
-Contributors:      flixos90
-Donate link:       https://felix-arntz.me/wordpress-plugins/
-Requires at least: 5.0
-Tested up to:      6.7
-Requires PHP:      5.2
-Stable tag:        1.0.0
-License:           GPLv2 or later
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html
-Tags:              smooth scroll, scroll animation, performance, anchor links, lightweight
+Plugin Name:  Fast Smooth Scroll
+Plugin URI:   https://wordpress.org/plugins/fast-smooth-scroll/
+Author:       Felix Arntz
+Author URI:   https://felix-arntz.me
+Contributors: flixos90
+Donate link:  https://felix-arntz.me/wordpress-plugins/
+Tested up to: 6.7
+Stable tag:   1.0.0
+License:      GPLv2 or later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+Tags:         smooth scroll, scroll animation, performance, anchor links, lightweight
 
 This lightweight plugin enhances user experience by enabling smooth scrolling for anchor links without the need for jQuery or other dependencies.
 
