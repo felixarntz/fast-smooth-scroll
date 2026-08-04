@@ -12,8 +12,8 @@
 	// https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach#Polyfill
 	if ( ! window.NodeList.prototype.forEach ) {
 		window.NodeList.prototype.forEach = function ( callback, thisArg ) {
-			var i;
-			var len = this.length;
+			let i;
+			const len = this.length;
 
 			thisArg = thisArg || window;
 
@@ -36,11 +36,11 @@
 	}
 
 	function smoothScrollAnimation( start, target, duration ) {
-		var startTime = window.performance.now();
+		const startTime = window.performance.now();
 
 		function animationStep( currentTime ) {
-			var timeElapsed = currentTime - startTime;
-			var progress = Math.min( timeElapsed / duration, 1 );
+			const timeElapsed = currentTime - startTime;
+			const progress = Math.min( timeElapsed / duration, 1 );
 
 			window.scrollTo( 0, easeInOutQuad( start, target, progress ) );
 
@@ -59,12 +59,12 @@
 
 		event.preventDefault();
 
-		var targetId = event.target.getAttribute( 'href' ).substring( 1 );
-		var targetElement = document.getElementById( targetId );
+		const targetId = event.target.getAttribute( 'href' ).substring( 1 );
+		const targetElement = document.getElementById( targetId );
 		if ( ! targetElement ) {
 			return;
 		}
-		var targetOffset = targetElement.offsetTop;
+		let targetOffset = targetElement.offsetTop;
 		if ( window.fastSmoothScrollOffset ) {
 			targetOffset = targetOffset - window.fastSmoothScrollOffset;
 		}
@@ -73,7 +73,7 @@
 		window.location.hash = '#' + targetId;
 	}
 
-	var links = document.querySelectorAll( 'a[href^="#"]' );
+	const links = document.querySelectorAll( 'a[href^="#"]' );
 	links.forEach( function ( link ) {
 		link.addEventListener( 'click', smoothScroll );
 	} );
