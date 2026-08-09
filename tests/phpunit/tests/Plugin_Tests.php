@@ -240,13 +240,19 @@ class Fast_Smooth_Scroll_Tests extends WP_UnitTestCase {
 		$wp_scripts = wp_scripts();
 
 		if ( method_exists( $wp_scripts, 'get_inline_script_data' ) ) {
-			return $wp_scripts->get_inline_script_data( $handle, $position );
+			$data = $wp_scripts->get_inline_script_data( $handle, $position );
+		} else {
+			$data = $wp_scripts->get_data( $handle, $position );
+			if ( empty( $data ) || ! is_array( $data ) ) {
+				return '';
+			}
+			$data = trim( implode( "\n", $data ), "\n" );
 		}
 
-		$data = $wp_scripts->get_data( $handle, $position );
-		if ( empty( $data ) || ! is_array( $data ) ) {
-			return '';
-		}
-		return trim( implode( "\n", $data ), "\n" );
+		/*
+		 * WordPress 6.7+ appends a sourceURL comment for browser devtools when returning
+		 * inline script data. Strip it so assertions can match the original script content.
+		 */
+		return preg_replace( ':\n//# sourceURL=.+$:', '', $data );
 	}
 }

@@ -4,3 +4,5 @@ parameters:
 	level: 4
 	paths:
 		- fast-smooth-scroll.php
+	scanFiles:
+		- tools/php/lint/vendor/php-stubs/wordpress-stubs/wordpress-stubs.php

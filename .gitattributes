@@ -1,9 +1,9 @@
 /.git export-ignore
 /.github export-ignore
 /.wordpress-org export-ignore
-/build-cs export-ignore
 /node_modules export-ignore
 /tests export-ignore
+/tools export-ignore
 /vendor export-ignore
 
 /*.DS_store export-ignore
@@ -18,6 +18,7 @@
 /.wp-env.json export-ignore
 /composer.json export-ignore
 /composer.lock export-ignore
+/eslint.config.js export-ignore
 /package-lock.json export-ignore
 /package.json export-ignore
 /phpcs.xml.dist export-ignore
