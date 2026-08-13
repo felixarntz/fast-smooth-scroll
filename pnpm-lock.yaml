@@ -8,18 +8,30 @@ importers:
 
   .:
     devDependencies:
+      '@playwright/test':
+        specifier: ^1.62.1
+        version: 1.62.1
+      '@wordpress/e2e-test-utils-playwright':
+        specifier: ^1.52.0
+        version: 1.52.0(@playwright/test@1.62.1)(@types/node@26.1.2)
       '@wordpress/env':
         specifier: ^11.12.0
         version: 11.12.0(@types/node@26.1.2)
       '@wordpress/scripts':
         specifier: ^34.0.0
-        version: 34.0.0(@playwright/test@1.51.1)(@types/node@26.1.2)(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(@wordpress/env@11.12.0(@types/node@26.1.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint-scss@6.14.0(stylelint@16.26.1(@typescript/typescript6@6.0.2)))(tslib@2.8.1)(type-fest@4.41.0)
+        version: 34.0.0(@playwright/test@1.62.1)(@types/node@26.1.2)(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(@wordpress/env@11.12.0(@types/node@26.1.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint-scss@6.14.0(stylelint@16.26.1(@typescript/typescript6@6.0.2)))(tslib@2.8.1)(type-fest@4.41.0)
+      '@wordpress/url':
+        specifier: ^4.52.0
+        version: 4.52.0
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
       typescript:
         specifier: npm:@typescript/typescript6@^6.0.2
         version: '@typescript/typescript6@6.0.2'
+      uuid:
+        specifier: ^14.0.1
+        version: 14.0.1
 
 packages:
 
@@ -1761,9 +1773,9 @@ packages:
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  '@playwright/test@1.51.1':
-    resolution: {integrity: sha512-nM+kEaTSAoVlXmMPH10017vn3FSiFqr/bh4fKg9vmAdMfd9SDqRZNvPSiAHADc/itWak+qPvMPZQOPwCBW7k7Q==}
-    engines: {node: '>=18'}
+  '@playwright/test@1.62.1':
+    resolution: {integrity: sha512-DTcUc8qii+cpHvtOwggMtBRMjKZHXYWdw8syRYu2vtzuq4Wxphqq4NfCs5Zt44L6mA8rfDfj+PHnxFc/FeK6mQ==}
+    engines: {node: '>=20'}
     hasBin: true
 
   '@pmmmwh/react-refresh-webpack-plugin@0.5.17':
@@ -2578,6 +2590,10 @@ packages:
 
   '@wordpress/undo-manager@1.52.0':
     resolution: {integrity: sha512-6hI0WWDOtLLVEkWqQokCoQRz5Pba9UNtgt5MV4hHGe5x0mzsowj+GWHedppf8UCVZ2ex3cde7fThaRKMCackrQ==}
+    engines: {node: '>=18.12.0', npm: '>=8.19.2'}
+
+  '@wordpress/url@4.52.0':
+    resolution: {integrity: sha512-4cSo0dUHiOQB2DiiPkoVIqP5aoGJdIj32LD9XgG41yeh7xG6ALdDA1I/883WFRoX2JIYySFj208MzopURDH7Yg==}
     engines: {node: '>=18.12.0', npm: '>=8.19.2'}
 
   '@wordpress/warning@3.52.0':
@@ -5685,14 +5701,14 @@ packages:
     resolution: {integrity: sha512-emEcLuomt2j03vxD54giVB4SxTjnsqkU692xZOZXHDVoYyypEm+b3jpiTcc+Cf+myooc+/Ly0z01jqeNHVgJGw==}
     engines: {node: '>=16.0.0'}
 
-  playwright-core@1.51.1:
-    resolution: {integrity: sha512-/crRMj8+j/Nq5s8QcvegseuyeZPxpQCZb6HNk3Sos3BlZyAknRjoyJPFWkpNn8v0+P3WiwqFF8P+zQo4eqiNuw==}
-    engines: {node: '>=18'}
+  playwright-core@1.62.1:
+    resolution: {integrity: sha512-wPYSwEBJY9GHraISXqyqtx0na0LpO3XEX7jNDhntbex7tzUS7kLnZsOlFruFJB4Hi/rhDMjXGqHewDZ68nYZVw==}
+    engines: {node: '>=20'}
     hasBin: true
 
-  playwright@1.51.1:
-    resolution: {integrity: sha512-kkx+MB2KQRkyxjYPc3a0wLZZoDczmppyGJIvQ43l+aZihkaVvmu/21kiyaHeHjiFxjxNNFnUncKmcGIyOojsaw==}
-    engines: {node: '>=18'}
+  playwright@1.62.1:
+    resolution: {integrity: sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg==}
+    engines: {node: '>=20'}
     hasBin: true
 
   plur@4.0.0:
@@ -6131,6 +6147,9 @@ packages:
   regjsparser@0.13.2:
     resolution: {integrity: sha512-NgRBy2Nx/bE+9F27nVHnqcN5HjyLmecqsqx2PJHu3/IEtADD4WuxuXIVExD5PoSDFVrl78dOonfcOe5O+5nbzQ==}
     hasBin: true
+
+  remove-accents@0.5.0:
+    resolution: {integrity: sha512-8g3/Otx1eJaVD12e31UbJj1YzdtVvzH85HV7t+9MJYk/u3XmkOUJ5Ys9wQrf9PCPK8+xn4ymzqYCiZl6QWKn+A==}
 
   requestidlecallback@0.3.0:
     resolution: {integrity: sha512-TWHFkT7S9p7IxLC5A1hYmAYQx2Eb9w1skrXmQ+dS1URyvR8tenMLl4lHbqEOUnpEYxNKpkVMXUgknVpBZWXXfQ==}
@@ -6983,6 +7002,10 @@ packages:
   utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+
+  uuid@14.0.1:
+    resolution: {integrity: sha512-6ZxzVpzDXDa3bJWaHilVayA+BH/1zmxCJoVgvmqJnid/gPoKHxUrS/aC/T6LGQtNHT+XHG9fXPJB4d+IrU30Ew==}
+    hasBin: true
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
@@ -9509,9 +9532,9 @@ snapshots:
 
   '@pkgr/core@0.3.6': {}
 
-  '@playwright/test@1.51.1':
+  '@playwright/test@1.62.1':
     dependencies:
-      playwright: 1.51.1
+      playwright: 1.62.1
 
   '@pmmmwh/react-refresh-webpack-plugin@0.5.17(react-refresh@0.14.2)(type-fest@4.41.0)(webpack-dev-server@5.2.6)(webpack@5.109.2)':
     dependencies:
@@ -10284,9 +10307,9 @@ snapshots:
     dependencies:
       '@wordpress/deprecated': 4.52.0
 
-  '@wordpress/e2e-test-utils-playwright@1.52.0(@playwright/test@1.51.1)(@types/node@26.1.2)':
+  '@wordpress/e2e-test-utils-playwright@1.52.0(@playwright/test@1.62.1)(@types/node@26.1.2)':
     dependencies:
-      '@playwright/test': 1.51.1
+      '@playwright/test': 1.62.1
       '@types/node': 26.1.2
       change-case: 4.1.2
       get-port: 5.1.1
@@ -10433,7 +10456,7 @@ snapshots:
 
   '@wordpress/private-apis@1.52.0': {}
 
-  '@wordpress/scripts@34.0.0(@playwright/test@1.51.1)(@types/node@26.1.2)(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(@wordpress/env@11.12.0(@types/node@26.1.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint-scss@6.14.0(stylelint@16.26.1(@typescript/typescript6@6.0.2)))(tslib@2.8.1)(type-fest@4.41.0)':
+  '@wordpress/scripts@34.0.0(@playwright/test@1.62.1)(@types/node@26.1.2)(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(@wordpress/env@11.12.0(@types/node@26.1.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint-scss@6.14.0(stylelint@16.26.1(@typescript/typescript6@6.0.2)))(tslib@2.8.1)(type-fest@4.41.0)':
     dependencies:
       '@babel/core': 7.29.7
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.17(react-refresh@0.14.2)(type-fest@4.41.0)(webpack-dev-server@5.2.6)(webpack@5.109.2)
@@ -10441,7 +10464,7 @@ snapshots:
       '@wordpress/babel-preset-default': 8.52.0
       '@wordpress/browserslist-config': 6.52.0
       '@wordpress/dependency-extraction-webpack-plugin': 6.52.0(webpack@5.109.2)
-      '@wordpress/e2e-test-utils-playwright': 1.52.0(@playwright/test@1.51.1)(@types/node@26.1.2)
+      '@wordpress/e2e-test-utils-playwright': 1.52.0(@playwright/test@1.62.1)(@types/node@26.1.2)
       '@wordpress/eslint-plugin': 25.8.0(@babel/core@7.29.7)(@types/react@18.3.31)(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript-eslint/parser@8.65.0(@typescript/typescript6@6.0.2)(eslint@10.8.0))(@typescript/typescript6@6.0.2)(eslint@10.8.0)(jest@30.4.2(@types/node@26.1.2))(postcss@8.5.25)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint@16.26.1(@typescript/typescript6@6.0.2))(wp-prettier@3.0.3)
       '@wordpress/jest-preset-default': 13.0.0(@babel/core@7.29.7)(jest@30.4.2(@types/node@26.1.2))
       '@wordpress/npm-package-json-lint-config': 5.52.0(npm-package-json-lint@6.4.0(@typescript/typescript6@6.0.2))
@@ -10491,7 +10514,7 @@ snapshots:
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.2.6)(webpack@5.109.2)
       webpack-dev-server: 5.2.6(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.109.2)
     optionalDependencies:
-      '@playwright/test': 1.51.1
+      '@playwright/test': 1.62.1
       '@wordpress/env': 11.12.0(@types/node@26.1.2)
     transitivePeerDependencies:
       - '@minify-html/node'
@@ -10576,6 +10599,10 @@ snapshots:
   '@wordpress/undo-manager@1.52.0':
     dependencies:
       '@wordpress/is-shallow-equal': 5.52.0
+
+  '@wordpress/url@4.52.0':
+    dependencies:
+      remove-accents: 0.5.0
 
   '@wordpress/warning@3.52.0': {}
 
@@ -14159,11 +14186,11 @@ snapshots:
       pvutils: 1.1.5
       tslib: 2.8.1
 
-  playwright-core@1.51.1: {}
+  playwright-core@1.62.1: {}
 
-  playwright@1.51.1:
+  playwright@1.62.1:
     dependencies:
-      playwright-core: 1.51.1
+      playwright-core: 1.62.1
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -14619,6 +14646,8 @@ snapshots:
   regjsparser@0.13.2:
     dependencies:
       jsesc: 3.1.0
+
+  remove-accents@0.5.0: {}
 
   requestidlecallback@0.3.0: {}
 
@@ -15611,6 +15640,8 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   utils-merge@1.0.1: {}
+
+  uuid@14.0.1: {}
 
   uuid@8.3.2: {}
 
