@@ -13,6 +13,7 @@ A WordPress plugin that enhances user experience by enabling smooth scrolling fo
 - `pnpm build` - build JS code
 - `pnpm test:php` - run PHP tests (requires [dev server running](#using-the-dev-server))
 - `pnpm test:php-multisite` - run PHP tests for Multisite (requires [dev server running](#using-the-dev-server))
+- `pnpm test:e2e` - run E2E tests (requires [dev server running](#using-the-dev-server))
 
 **DO NOT** use `composer test` and `composer test-multisite` to run PHP tests!
 
