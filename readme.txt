@@ -7,7 +7,7 @@ Author URI:   https://felix-arntz.me
 Contributors: flixos90
 Donate link:  https://felix-arntz.me/wordpress-plugins/
 Tested up to: 7.1
-Stable tag:   1.0.0
+Stable tag:   1.0.1
 License:      GPLv2 or later
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 Tags:         smooth scroll, scroll animation, performance, anchor links, lightweight
@@ -116,6 +116,9 @@ If you have ideas to improve the plugin or to solve a bug, feel free to raise an
 You can also contribute to the plugin by translating it. Simply visit [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/fast-smooth-scroll) to get started.
 
 == Changelog ==
+
+= 1.0.1=
+* Enhanced: Update dependencies to latest versions, modernize repository setup, use PNPM for JS management.
 
 = 1.0.0 =
 * First stable version
